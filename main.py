@@ -219,11 +219,15 @@ if generate_button:
 
 if st.session_state.generated_sop:
     st.subheader("✍️ Generated SOP/Motivation Letter:")
-    st.markdown(f"""
+    sop_html = st.session_state.generated_sop.replace("\n", "<br>")
+    st.markdown(
+        f"""
 <div style="border: 1px solid #ddd; padding: 15px; border-radius: 5px; background-color: #000; color: #fff;">
-{st.session_state.generated_sop.replace("\n", "<br>")}
+{sop_html}
 </div>
-""", unsafe_allow_html=True)
+""",
+        unsafe_allow_html=True
+    )
     st.download_button(
         label="📥 Download SOP as Text File",
         data=st.session_state.generated_sop,
